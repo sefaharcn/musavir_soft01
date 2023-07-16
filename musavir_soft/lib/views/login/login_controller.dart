@@ -35,13 +35,13 @@ class LoginController extends GetxController {
     _loginService.login(requestModel).then((user) {
       if (user.statu == 2) {
         isLogin.call(true);
-        print('giriş');
+
+        //Get.offAndToNamed(HomePage.routeName);
       }
 
       if (user.statu == 1) errorTexts.value = wrongPasswordText;
       if (user.statu == 0) errorTexts.value = noUserText;
       userId.value = user.userId;
-      print('user id alıyorum');
     }).catchError((dynamic error) {
       this.error.trigger(error);
     }).whenComplete(() {

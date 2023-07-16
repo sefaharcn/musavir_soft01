@@ -20,30 +20,34 @@ class LoginPage extends GetWidget<LoginController> {
     });
 
     return Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           title: Text(loginAppBarText),
           backgroundColor: mainColor,
-        ),
+        ),*/
         body: _buildBody());
   }
 
   Widget _buildBody() {
-    return Padding(
-      padding: const EdgeInsets.all(25.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _buildSpace(),
-            _buildImage(),
-            _buildMaxSpace(),
-            _buildUsernameTextField(),
-            _buildSpace(),
-            _buildPasswordTextField(),
-            _buildMaxSpace(),
-            _buildButton(),
-            _buildSpace(),
-          ],
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _buildSpace(100),
+              _buildImage(),
+              _buildMaxSpace(),
+              _buildUsernameTextField(),
+              _buildSpace(20),
+              _buildPasswordTextField(),
+              _buildSpace(20),
+              _buildSicilTextField(),
+              _buildSpace(20),
+              _buildButton(),
+              _buildSpace(100),
+            ],
+          ),
         ),
       ),
     );
@@ -52,7 +56,7 @@ class LoginPage extends GetWidget<LoginController> {
   Widget _buildImage() {
     return Image.asset(
       logo,
-      height: Get.height * .3,
+      height: Get.height * .11,
     );
   }
 
@@ -60,12 +64,6 @@ class LoginPage extends GetWidget<LoginController> {
     return Material(
       elevation: 10,
       color: white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(300),
-          topLeft: Radius.circular(10),
-        ),
-      ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(40, 2, 8, 2),
         child: TextField(
@@ -84,12 +82,6 @@ class LoginPage extends GetWidget<LoginController> {
     return Material(
       elevation: 10,
       color: white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(300),
-          bottomRight: Radius.circular(10),
-        ),
-      ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(40, 2, 8, 2),
         child: TextField(
@@ -97,6 +89,24 @@ class LoginPage extends GetWidget<LoginController> {
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: passwordText,
+          ),
+          controller: controller.passwordControler,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSicilTextField() {
+    return Material(
+      elevation: 10,
+      color: white,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(40, 2, 8, 2),
+        child: TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: 'Sicil Şifresi',
           ),
           controller: controller.passwordControler,
         ),
@@ -119,19 +129,16 @@ class LoginPage extends GetWidget<LoginController> {
               );
             } else {
               _emptyDialog();
-              print('boşa çıktı');
             }
           },
           child: Text(loginButton),
-          style: ElevatedButton.styleFrom(
-            primary: mainColor,
-          )),
+          style: ElevatedButton.styleFrom(backgroundColor: mainColor)),
     );
   }
 
-  Widget _buildSpace() {
+  Widget _buildSpace(double x) {
     return SizedBox(
-      height: 20,
+      height: x,
     );
   }
 
@@ -150,7 +157,7 @@ class LoginPage extends GetWidget<LoginController> {
       errorTitle,
       errorDescription,
       colorText: white,
-      backgroundColor: red,
+      backgroundColor: black,
     );
   }
 
@@ -159,7 +166,7 @@ class LoginPage extends GetWidget<LoginController> {
       errorTitle,
       emptyText,
       colorText: white,
-      backgroundColor: red,
+      backgroundColor: black,
     );
   }
 
@@ -168,7 +175,7 @@ class LoginPage extends GetWidget<LoginController> {
       errorTitle,
       description,
       colorText: white,
-      backgroundColor: red,
+      backgroundColor: black,
     );
   }
 }

@@ -7,9 +7,9 @@ class HomeController extends GetxController {
   final Rx<bool> isLoading = RxBool(false);
   final Rxn<dynamic> error = Rxn<dynamic>();
 
-  final Rxn<List> notesTitle = Rxn();
-  final Rxn<List> notesDescription = Rxn();
-  final Rxn<List> notesDate = Rxn();
+  final Rxn<List> ornekId = Rxn();
+  final Rxn<List> ornek01 = Rxn();
+  final Rxn<List> ornek02 = Rxn();
 
   final Rxn<List> userNotes = Rxn();
 
@@ -23,13 +23,14 @@ class HomeController extends GetxController {
     // _callingGetNotesDescription();
     // _callingGetNotesDate();
 
-    _callingGetUserNotesTitle();
-    _callingGetUserNotesDescription();
-    _callingGetUserNotesDate();
+    _ornekIdGetir();
+    _ornek01Getir();
+    _ornek02Getir();
 
     super.onInit();
   }
 
+/*
   void _callingGetNotesTitle() {
     isLoading.call(true);
 
@@ -68,13 +69,13 @@ class HomeController extends GetxController {
       isLoading.call(false);
     });
   }
-
+*/
   //user notes
-  void _callingGetUserNotesTitle() {
+  void _ornekIdGetir() {
     isLoading.call(true);
 
-    _homeService.getUserNotesTitle().then((not) {
-      notesTitle.value = not;
+    _homeService.getOrnekId().then((not) {
+      ornekId.value = not;
     }).catchError((dynamic error) {
       this.error.trigger(error);
       print(error);
@@ -83,11 +84,11 @@ class HomeController extends GetxController {
     });
   }
 
-  void _callingGetUserNotesDescription() {
+  void _ornek01Getir() {
     isLoading.call(true);
 
-    _homeService.getUserNotesDescription().then((not) {
-      notesDescription.value = not;
+    _homeService.getOrnek01().then((not) {
+      ornek01.value = not;
     }).catchError((dynamic error) {
       this.error.trigger(error);
       print(error);
@@ -96,11 +97,11 @@ class HomeController extends GetxController {
     });
   }
 
-  void _callingGetUserNotesDate() {
+  void _ornek02Getir() {
     isLoading.call(true);
 
-    _homeService.getUserNotesDate().then((not) {
-      notesDate.value = not;
+    _homeService.getOrnek02().then((not) {
+      ornek02.value = not;
     }).catchError((dynamic error) {
       this.error.trigger(error);
       print(error);

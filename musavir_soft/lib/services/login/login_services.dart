@@ -10,12 +10,12 @@ abstract class LoginService {
 class LoginServiceImp extends LoginService {
   @override
   Future login(LoginRequestModel loginRequestModel) async {
-    const String _baseUrl = 'http://sefaharcn.website/musavir/login.php';
+    const String _baseUrl = 'http://192.168.1.38/musavir/login.php';
 
     var _url = Uri.parse(_baseUrl);
 
     final response = await http.post(_url, body: loginRequestModel.toJson());
-    print('login servisteyim');
+
     if (response.statusCode == 200) {
       print('bağlantı sağlandı');
       return loginResponseModelFromJson(response.body);

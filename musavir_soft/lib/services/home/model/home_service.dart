@@ -3,17 +3,18 @@ import 'package:musavir_soft/common/common_values.dart';
 import 'package:musavir_soft/services/home/model/home_response_models.dart';
 
 abstract class HomeService {
-  Future getNotesTitle();
-  Future getNotesDescription();
-  Future getNotesDate();
+  //Future getNotesTitle();
+  //Future getNotesDescription();
+  //Future getNotesDate();
 
 //user notes
-  Future getUserNotesTitle();
-  Future getUserNotesDescription();
-  Future getUserNotesDate();
+  Future getOrnekId();
+  Future getOrnek01();
+  Future getOrnek02();
 }
 
 class HomeServiceImp extends HomeService {
+  /*
   @override
   Future getNotesTitle() async {
     const String _baseUrl = 'http://kadriyemacit.com/notebook/get_notes.php';
@@ -76,37 +77,11 @@ class HomeServiceImp extends HomeService {
       return '';
     }
   }
-
+*/
 //user notes
   @override
-  Future getUserNotesTitle() async {
-    const String _baseUrl =
-        'http://kadriyemacit.com/notebook/get_user_notes.php';
-
-    var _url = Uri.parse(_baseUrl);
-
-    final response = await http.post(
-      _url,
-      body: {"userId": userId},
-    );
-
-    var noteListTitle = [];
-
-    if (response.statusCode == 200) {
-      var data = homeResponseModelFromJson(response.body);
-      for (int i = 0; i < data.length; i++) {
-        noteListTitle.add(data[i].title);
-      }
-      return noteListTitle;
-    } else {
-      return '';
-    }
-  }
-
-  @override
-  Future getUserNotesDescription() async {
-    const String _baseUrl =
-        'http://kadriyemacit.com/notebook/get_user_notes.php';
+  Future getOrnekId() async {
+    const String _baseUrl = 'http://192.168.1.38/musavir/ornektabloveri.php';
 
     var _url = Uri.parse(_baseUrl);
 
@@ -115,23 +90,22 @@ class HomeServiceImp extends HomeService {
       body: {"userId": userId.value},
     );
 
-    var noteListDescription = [];
+    var ornekIdListe = [];
 
     if (response.statusCode == 200) {
       var data = homeResponseModelFromJson(response.body);
       for (int i = 0; i < data.length; i++) {
-        noteListDescription.add(data[i].description);
+        ornekIdListe.add(data[i].ornekId);
       }
-      return noteListDescription;
+      return ornekIdListe;
     } else {
       return '';
     }
   }
 
   @override
-  Future getUserNotesDate() async {
-    const String _baseUrl =
-        'http://kadriyemacit.com/notebook/get_user_notes.php';
+  Future getOrnek01() async {
+    const String _baseUrl = 'http://192.168.1.38/musavir/ornektabloveri.php';
 
     var _url = Uri.parse(_baseUrl);
 
@@ -140,14 +114,38 @@ class HomeServiceImp extends HomeService {
       body: {"userId": userId.value},
     );
 
-    var noteListDate = [];
+    var ornek01Liste = [];
 
     if (response.statusCode == 200) {
       var data = homeResponseModelFromJson(response.body);
       for (int i = 0; i < data.length; i++) {
-        noteListDate.add(data[i].date);
+        ornek01Liste.add(data[i].ornek01);
       }
-      return noteListDate;
+      return ornek01Liste;
+    } else {
+      return '';
+    }
+  }
+
+  @override
+  Future getOrnek02() async {
+    const String _baseUrl = 'http://192.168.1.38/musavir/ornektabloveri.php';
+
+    var _url = Uri.parse(_baseUrl);
+
+    final response = await http.post(
+      _url,
+      body: {"userId": userId.value},
+    );
+
+    var ornek02Liste = [];
+
+    if (response.statusCode == 200) {
+      var data = homeResponseModelFromJson(response.body);
+      for (int i = 0; i < data.length; i++) {
+        ornek02Liste.add(data[i].ornek02);
+      }
+      return ornek02Liste;
     } else {
       return '';
     }
