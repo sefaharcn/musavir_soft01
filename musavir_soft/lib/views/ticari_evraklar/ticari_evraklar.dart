@@ -66,6 +66,7 @@ class ticariEvraklar extends StatelessWidget {
     );
   }
 
+//tablo oluşturmaaaaaa
   Flexible FlexMethod(
     String name,
   ) {
